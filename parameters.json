@@ -1,0 +1,70 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "location": {
+            "value": "eastus"
+        },
+        "networkInterfaceName": {
+            "value": "linuxvm15442"
+        },
+        "networkSecurityGroupName": {
+            "value": "linuxvm15-nsg"
+        },
+        "networkSecurityGroupRules": {
+            "value": [
+                {
+                    "name": "SSH",
+                    "properties": {
+                        "priority": 300,
+                        "protocol": "TCP",
+                        "access": "Allow",
+                        "direction": "Inbound",
+                        "sourceAddressPrefix": "*",
+                        "sourcePortRange": "*",
+                        "destinationAddressPrefix": "*",
+                        "destinationPortRange": "22"
+                    }
+                }
+            ]
+        },
+        "subnetName": {
+            "value": "myvmSubnet"
+        },
+        "virtualNetworkId": {
+            "value": "/subscriptions/540b7602-d4c7-41d9-ae81-9b1cfaa2f21d/resourceGroups/test15may/providers/Microsoft.Network/virtualNetworks/myvmVNET"
+        },
+        "publicIpAddressName": {
+            "value": "linuxvm15-ip"
+        },
+        "publicIpAddressType": {
+            "value": "Dynamic"
+        },
+        "publicIpAddressSku": {
+            "value": "Basic"
+        },
+        "virtualMachineName": {
+            "value": "linuxvm15"
+        },
+        "virtualMachineRG": {
+            "value": "test15may"
+        },
+        "osDiskType": {
+            "value": "Premium_LRS"
+        },
+        "virtualMachineSize": {
+            "value": "Standard_B1ms"
+        },
+        "adminUsername": {
+            "value": "akatare"
+        },
+        "adminPassword": {
+            "reference": { 
+"keyVault": { 
+"id":"/subscriptions/540b7602-d4c7-41d9-ae81-9b1cfaa2f21d/resourceGroups/test15may/providers/Microsoft.KeyVault/vaults/mykeyvault15may"}, 
+"secretName":"secretforvm" 
+} 
+
+        }
+    }
+}
